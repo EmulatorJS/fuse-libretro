@@ -1,5 +1,6 @@
 CORE_DIR  = .
 BUILD_DIR = build
+EMULATORJS_THREADS ?= 0
 
 ifeq ($(platform),android_arm64-v8a)
 include $(BUILD_DIR)/Makefile.android_arm64-v8a
@@ -401,6 +402,11 @@ else ifeq ($(platform), libnx)
 # emscripten
 else ifeq ($(platform), emscripten)
 	TARGET := $(TARGET_NAME)_libretro_emscripten.bc
+	ifeq ($(EMULATORJS_THREADS), 1)
+		LDFLAGS += -pthread
+		CFLAGS += -pthread
+		CXXFLAGS += -pthread
+	endif
 
 # CTR (3DS)
 else ifeq ($(platform), ctr)
