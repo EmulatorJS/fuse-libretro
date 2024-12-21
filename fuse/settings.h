@@ -146,7 +146,7 @@ typedef struct settings_info {
    int mouse_swap_buttons;
   char *movie_compr;
   char *movie_start;
-   int movie_stop_after_rzx;
+   int movie_stop_fuse_after_rzx;
    int multiface1;
    int multiface128;
    int multiface1_stealth;

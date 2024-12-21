@@ -237,11 +237,11 @@ MENU_CALLBACK( menu_file_screenshot_openmltscreenshot )
   fuse_emulation_unpause();
 }
 
-MENU_CALLBACK( menu_file_movie_stop )
+MENU_CALLBACK( menu_file_movie_stop_fuse )
 {
   ui_widget_finish();
 
-  movie_stop();
+  movie_stop_fuse();
 }
 
 MENU_CALLBACK( menu_file_movie_pause )

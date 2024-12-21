@@ -493,8 +493,8 @@ static void widget_option_disk_ask_merge_draw( int left_edge, int width, struct 
 static int  widget_movie_running = 0;
 static void widget_movie_compr_click( void );
 static void widget_option_movie_compr_draw( int left_edge, int width, struct widget_option_entry *menu, settings_info *show );
-static void widget_movie_stop_after_rzx_click( void );
-static void widget_option_movie_stop_after_rzx_draw( int left_edge, int width, struct widget_option_entry *menu, settings_info *show );
+static void widget_movie_stop_fuse_after_rzx_click( void );
+static void widget_option_movie_stop_fuse_after_rzx_draw( int left_edge, int width, struct widget_option_entry *menu, settings_info *show );
 
 static widget_option_entry options_general[] = {
   { "General Options" },
@@ -623,7 +623,7 @@ static widget_option_entry options_diskoptions[] = {
 static widget_option_entry options_movie[] = {
   { "Movie Options" },
   { "Movie \012c\001ompression", 0, INPUT_KEY_c, NULL, widget_movie_compr_combo, widget_movie_compr_click, widget_option_movie_compr_draw },
-  { "\012S\001top recording after RZX ends", 1, INPUT_KEY_S, NULL, NULL, widget_movie_stop_after_rzx_click, widget_option_movie_stop_after_rzx_draw },
+  { "\012S\001top recording after RZX ends", 1, INPUT_KEY_S, NULL, NULL, widget_movie_stop_fuse_after_rzx_click, widget_option_movie_stop_fuse_after_rzx_draw },
   { NULL }
 };
 
@@ -2894,15 +2894,15 @@ widget_option_movie_compr_draw( int left_edge, int width, struct widget_option_e
 }
 
 static void
-widget_movie_stop_after_rzx_click( void )
+widget_movie_stop_fuse_after_rzx_click( void )
 {
-  widget_options_settings.movie_stop_after_rzx = ! widget_options_settings.movie_stop_after_rzx;
+  widget_options_settings.movie_stop_fuse_after_rzx = ! widget_options_settings.movie_stop_fuse_after_rzx;
 }
 
 static void
-widget_option_movie_stop_after_rzx_draw( int left_edge, int width, struct widget_option_entry *menu, settings_info *show )
+widget_option_movie_stop_fuse_after_rzx_draw( int left_edge, int width, struct widget_option_entry *menu, settings_info *show )
 {
-  widget_options_print_option( left_edge, width, menu->index, menu->text, show->movie_stop_after_rzx );
+  widget_options_print_option( left_edge, width, menu->index, menu->text, show->movie_stop_fuse_after_rzx );
 }
 
 void

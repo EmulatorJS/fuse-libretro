@@ -186,7 +186,7 @@ settings_info settings_default = {
   /* mouse_swap_buttons */ 0,
   /* movie_compr */ (char *)NULL,
   /* movie_start */ (char *)NULL,
-  /* movie_stop_after_rzx */ 1,
+  /* movie_stop_fuse_after_rzx */ 1,
   /* multiface1 */ 0,
   /* multiface128 */ 0,
   /* multiface1_stealth */ 0,
@@ -1260,7 +1260,7 @@ parse_xml( xmlDocPtr doc, settings_info *settings )
     if( !strcmp( (const char*)node->name, "moviestopafterrzx" ) ) {
       xmlstring = xmlNodeListGetString( doc, node->xmlChildrenNode, 1 );
       if( xmlstring ) {
-        settings->movie_stop_after_rzx = atoi( (char*)xmlstring );
+        settings->movie_stop_fuse_after_rzx = atoi( (char*)xmlstring );
         xmlFree( xmlstring );
       }
     } else
@@ -2490,7 +2490,7 @@ settings_write_config( settings_info *settings )
     xmlNewTextChild( root, NULL, (const xmlChar*)"moviecompr", (const xmlChar*)settings->movie_compr );
   if( settings->movie_start )
     xmlNewTextChild( root, NULL, (const xmlChar*)"moviestart", (const xmlChar*)settings->movie_start );
-  xmlNewTextChild( root, NULL, (const xmlChar*)"moviestopafterrzx", (const xmlChar*)(settings->movie_stop_after_rzx ? "1" : "0") );
+  xmlNewTextChild( root, NULL, (const xmlChar*)"moviestopafterrzx", (const xmlChar*)(settings->movie_stop_fuse_after_rzx ? "1" : "0") );
   xmlNewTextChild( root, NULL, (const xmlChar*)"multiface1", (const xmlChar*)(settings->multiface1 ? "1" : "0") );
   xmlNewTextChild( root, NULL, (const xmlChar*)"multiface128", (const xmlChar*)(settings->multiface128 ? "1" : "0") );
   xmlNewTextChild( root, NULL, (const xmlChar*)"multiface1stealth", (const xmlChar*)(settings->multiface1_stealth ? "1" : "0") );
@@ -3262,7 +3262,7 @@ settings_var( settings_info *settings, unsigned char *name, unsigned char *last,
     return 0;
   }
   if( n == 17 && !strncmp( (const char *)name, "moviestopafterrzx", n ) ) {
-    *val_int = &settings->movie_stop_after_rzx;
+    *val_int = &settings->movie_stop_fuse_after_rzx;
     return 0;
   }
   if( n == 10 && !strncmp( (const char *)name, "multiface1", n ) ) {
@@ -4242,7 +4242,7 @@ settings_write_config( settings_info *settings )
                              settings->movie_start ) )
     goto error;
   if( settings_boolean_write( doc, "moviestopafterrzx",
-                              settings->movie_stop_after_rzx ) )
+                              settings->movie_stop_fuse_after_rzx ) )
     goto error;
   if( settings_boolean_write( doc, "multiface1",
                               settings->multiface1 ) )
@@ -4809,8 +4809,8 @@ settings_command_line( settings_info *settings, int *first_arg,
     { "no-mouse-swap-buttons", 0, &(settings->mouse_swap_buttons), 0 },
     { "movie-compr", 1, NULL, 334 },
     { "movie-start", 1, NULL, 335 },
-    {    "movie-stop-after-rzx", 0, &(settings->movie_stop_after_rzx), 1 },
-    { "no-movie-stop-after-rzx", 0, &(settings->movie_stop_after_rzx), 0 },
+    {    "movie-stop-after-rzx", 0, &(settings->movie_stop_fuse_after_rzx), 1 },
+    { "no-movie-stop-after-rzx", 0, &(settings->movie_stop_fuse_after_rzx), 0 },
     {    "multiface1", 0, &(settings->multiface1), 1 },
     { "no-multiface1", 0, &(settings->multiface1), 0 },
     {    "multiface128", 0, &(settings->multiface128), 1 },
@@ -5431,7 +5431,7 @@ settings_copy_internal( settings_info *dest, settings_info *src )
   if( src->movie_start ) {
     dest->movie_start = utils_safe_strdup( src->movie_start );
   }
-  dest->movie_stop_after_rzx = src->movie_stop_after_rzx;
+  dest->movie_stop_fuse_after_rzx = src->movie_stop_fuse_after_rzx;
   dest->multiface1 = src->multiface1;
   dest->multiface128 = src->multiface128;
   dest->multiface1_stealth = src->multiface1_stealth;

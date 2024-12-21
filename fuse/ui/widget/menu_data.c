@@ -67,7 +67,7 @@ static widget_menu_entry menu_file_movie[] = {
   { "R\012e\011cord from RZX...", INPUT_KEY_e, NULL, menu_file_movie_record_recordfromrzx, NULL, 0 },
   { "\012P\011ause", INPUT_KEY_p, NULL, menu_file_movie_pause, NULL, 0 },
   { "\012C\011ontinue", INPUT_KEY_c, NULL, menu_file_movie_pause, NULL, 0 },
-  { "\012S\011top", INPUT_KEY_s, NULL, menu_file_movie_stop, NULL, 0 },
+  { "\012S\011top", INPUT_KEY_s, NULL, menu_file_movie_stop_fuse, NULL, 0 },
   { NULL }
 };
 

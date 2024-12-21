@@ -350,7 +350,7 @@ movie_start( const char *name )	/* some init, open file (name)*/
 }
 
 void
-movie_stop( void )
+movie_stop_fuse( void )
 {
   if( !movie_paused && !movie_recording ) return;
 
